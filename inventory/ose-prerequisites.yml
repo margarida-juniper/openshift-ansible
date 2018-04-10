@@ -1,0 +1,37 @@
+---
+- hosts: OSEv3
+  tasks:
+  - name: Install base packages
+    yum: name="{{ item }}" state=present
+    with_items:
+    - wget
+    - net-tools
+    - bind-utils
+    - iptables-services
+    - bridge-utils
+    - bash-completion
+    - git
+    - python-pip
+    - kexec-tools
+    - sos
+    - psacct
+    - ntp
+
+  - name: Install Openshift Enterprise package
+    yum: name="{{ item }}" state=present
+    with_items:
+    - atomic-openshift-utils
+    when:
+    - deployment_type == "openshift-enterprise"
+    
+  - name: Install docker-py
+    command: pip install docker-py
+
+  - name: Install Docker
+    yum: name=docker-1.13.1 state=present
+
+  - name: Enable Docker Service
+    service: name=docker enabled=yes
+
+  - name: Start Docker Service
+    service: name=docker state=started
