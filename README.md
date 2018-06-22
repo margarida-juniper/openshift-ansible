@@ -4,7 +4,7 @@
 
 # OpenShift Ansible for Berlin Tech Fest
 
-MC> We used Branch 3.7-contrail for Berlin Tech Fest demo. You need to replace the contrail-installer file,  
+MC> We used branch release-3.7-contrail for Berlin Tech Fest demo. You need to replace the contrail-installer file,  
 
 openshift-ansible/contrail_master/templates/contrail-installer-5.j2
 
